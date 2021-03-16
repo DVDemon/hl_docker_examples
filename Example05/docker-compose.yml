@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  sql_test:
+      network_mode: "host"
+      container_name: sql_test_1
+      image: ddzuba/sql_test
+      command: ./sql_test 192.168.1.74

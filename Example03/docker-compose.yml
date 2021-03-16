@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.13
+    ports:
+      - 8080:80
+    volumes:
+      - /Users/dvdemon/OneDrive/Documents/Lectures/PPS/2021/Materials/Docker/Example03:/usr/share/nginx/html
