@@ -26,7 +26,7 @@ services:
   sql_test:
       container_name: sql_test_main
       image: ddzuba/sql_test
-      command: ./sql_test db-node-1
+      command: db-node-1
       networks:
         - my_network
       depends_on:

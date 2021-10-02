@@ -1,5 +1,5 @@
 # our base image
-FROM ubuntu:16.04
+FROM ubuntu:latest
 RUN apt-get update -y
 RUN apt-get install nginx -y
 RUN apt-get install wget -y
