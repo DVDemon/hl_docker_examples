@@ -5,5 +5,5 @@ services:
       network_mode: "host"
       container_name: sql_test_1
       image: ddzuba/sql_test
-      command: 192.168.8.100
+      command: 10.192.127.130
      # command: ./sql_test 192.168.8.100
