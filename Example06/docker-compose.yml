@@ -1,4 +1,4 @@
-version: '3'
+version: '2.1'
 
 services:
   db-node-1:
@@ -8,34 +8,45 @@ services:
     container_name: db-node-1
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: sql_test
-      MYSQL_USER: test
-      MYSQL_PASSWORD: pzjqUkMnc7vfNHET
+      MYSQL_DATABASE: stud
+      MYSQL_USER: stud
+      MYSQL_PASSWORD: stud
       MYSQL_ROOT_PASSWORD: '1'
     command: >
       --sql-mode='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
       --general-log=ON
       --log-queries-not-using-indexes=ON
-    networks:
-      - my_network
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
     ports:
       - 3306:3306
     volumes:
       - db-node-1-data:/var/lib/mysql
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
 
   sql_test:
       container_name: sql_test_main
-      image: ddzuba/sql_test
+      image: sql_test
       command: db-node-1
-      networks:
-        - my_network
       depends_on:
-      - "db-node-1"
-
+        db-node-1:
+          condition: service_healthy
+      
+      networks:
+        vpcbr:
+          ipv4_address: 10.5.0.6
 volumes:
   db-node-1-data:
 
 networks:
-  my_network:
+  vpcbr:
     driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+
+
+
 

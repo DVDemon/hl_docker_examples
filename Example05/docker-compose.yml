@@ -5,5 +5,5 @@ services:
       network_mode: "bridge"
       container_name: sql_test_1
       image: sql_test
-      command: 172.16.191.128
+      command: 192.168.1.84
      # command: ./sql_test 192.168.8.100
