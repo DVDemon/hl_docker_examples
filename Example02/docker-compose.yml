@@ -6,4 +6,4 @@ services:
     ports:
       - 8080:80
     volumes:
-      - /Users/dvdemon/OneDrive/Documents/Lectures/PPS/2021/Materials/Docker/Example02:/usr/local/apache2/htdocs
+      - .:/usr/local/apache2/htdocs

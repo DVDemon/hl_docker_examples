@@ -2,8 +2,8 @@ version: '3'
 
 services:
   my_server:
-    image: ddzuba/my_server:latest
+    image: my_server
     ports:
       - 8080:8080
     volumes:
-      - /Users/dvdemon/OneDrive/Documents/Lectures/PPS/2021/Materials/Docker/Example04:/hl_mai_03_server/CMakeFiles/content
+      - .:/hl_mai_03_server/CMakeFiles/content

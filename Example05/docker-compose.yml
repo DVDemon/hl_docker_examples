@@ -2,8 +2,8 @@ version: '3'
 
 services:
   sql_test:
-      network_mode: "host"
+      network_mode: "bridge"
       container_name: sql_test_1
-      image: ddzuba/sql_test
-      command: 10.192.127.130
+      image: sql_test
+      command: 172.16.191.128
      # command: ./sql_test 192.168.8.100
