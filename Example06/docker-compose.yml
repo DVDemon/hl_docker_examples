@@ -28,7 +28,8 @@ services:
 
   sql_test:
       container_name: sql_test_main
-      image: sql_test
+      build:
+        context: ./myserver
       command: db-node-1
       depends_on:
         db-node-1:
