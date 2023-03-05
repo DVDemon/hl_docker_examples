@@ -1,9 +1,0 @@
-version: '3'
-
-services:
-  my_server:
-    image: my_server
-    ports:
-      - 8080:8080
-    volumes:
-      - .:/hl_mai_03_server/CMakeFiles/content
