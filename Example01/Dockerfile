@@ -8,4 +8,4 @@ EXPOSE 80 443
 CMD ["nginx"]
 #docker build . -t my_nginx
 #docker images
-#docker run -p 80:80 -i my_nginx
+#docker run --rm -p 80:80 -i my_nginx

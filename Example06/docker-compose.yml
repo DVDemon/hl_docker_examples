@@ -8,7 +8,7 @@ services:
     container_name: db-node-1
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: stud
+      MYSQL_DATABASE: archdb
       MYSQL_USER: stud
       MYSQL_PASSWORD: stud
       MYSQL_ROOT_PASSWORD: '1'
@@ -16,8 +16,12 @@ services:
       --sql-mode='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
       --general-log=ON
       --log-queries-not-using-indexes=ON
+
     healthcheck:
-      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      test: "/usr/bin/mariadb --user=stud --password=stud --execute \"SHOW DATABASES;\""
+      interval: 15s
+      timeout: 1s
+      retries: 5
     ports:
       - 3306:3306
     volumes:
@@ -30,7 +34,7 @@ services:
       container_name: sql_test_main
       build:
         context: ./myserver
-      command: db-node-1
+      command: 10.5.0.5 3306
       depends_on:
         db-node-1:
           condition: service_healthy
